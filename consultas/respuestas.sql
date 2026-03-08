@@ -68,5 +68,42 @@ WHERE id = 173289 OR id = 423327;
 -- quien tenía el número de membresía "48Z123" y la placa del vehículo "0H42W2" coincidía con la descripción dada por los testigos.
 
 INSERT INTO solution VALUES (1, 'Jeremy Bowers');
-        
-        SELECT value FROM solution;
+    SELECT value FROM solution;
+
+-- 10. Después de identificar a Jeremy Bowers como el asesino,
+-- revisé su entrevista para averiguar si alguien más estuvo involucrado en la planificación del crimen.
+
+SELECT * FROM interview
+WHERE person_id = 67318;
+
+-- 11. A partir de la entrevista de Jeremy Bowers, busqué en la tabla drivers_license
+-- a mujeres con cabello rojo, altura entre 65 y 67 pulgadas 
+-- y que condujeran un Tesla Model S.
+
+SELECT * FROM drivers_license
+WHERE gender = 'female'
+AND hair_color = 'red'
+AND height BETWEEN 65 AND 67
+AND car_make = 'Tesla';
+
+-- 12. Después de identificar tres posibles coincidencias en la tabla drivers_license,
+-- consulté la tabla person para obtener los nombres de las sospechosas
+-- usando sus license_id.
+
+SELECT * FROM person
+WHERE license_id IN (202298, 291182, 918773);
+
+-- 13. Para identificar a la persona que contrató al asesino,
+-- revisé los registros del evento "SQL Symphony Concert"
+-- en diciembre de 2017 para las tres posibles sospechosas.
+
+SELECT * FROM facebook_event_checkin
+WHERE person_id IN (78881, 90700, 99716)
+AND event_name = 'SQL Symphony Concert'
+AND date BETWEEN 20171201 AND 20171231;
+
+-- 14. Finalmente, con toda la información recopilada,
+-- llegué a la conclusión de que la persona que contrató a Jeremy Bowers para cometer el asesinato fue Miranda Priestly, quien asistió 3 veces al concierto de SQL Symphony en diciembre de 2017.
+
+INSERT INTO solution VALUES (1, 'Miranda Priestly');
+    SELECT value FROM solution;
