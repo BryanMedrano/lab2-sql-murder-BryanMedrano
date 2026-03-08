@@ -1,3 +1,5 @@
+-------------------------------------------------------------------------------------
+
 -- 1. Consulté el reporte del crimen ocurrido el 15 de enero de 2018 en SQL City
 -- para obtener las primeras pistas sobre el asesinato.
 
@@ -5,6 +7,8 @@ SELECT * FROM crime_scene_report
 WHERE date = 20180115 
 AND city = 'SQL City' 
 AND type = 'murder';
+
+-------------------------------------------------------------------------------------
 
 -- 2. Busqué al primer testigo mencionado en el reporte del crimen.
 -- La pista indicaba que vive en la última casa de "Northwestern Dr".
@@ -16,6 +20,8 @@ WHERE address_street_name = 'Northwestern Dr'
 ORDER BY address_number DESC
 LIMIT 1;
 
+-------------------------------------------------------------------------------------
+
 -- 3. Revisé la entrevista del primer testigo identificado anteriormente.
 -- El testigo declaró haber escuchado un disparo y ver a un hombre salir corriendo
 -- con una bolsa del gimnasio "Get Fit Now Gym".
@@ -26,6 +32,8 @@ LIMIT 1;
 SELECT * FROM interview
 WHERE person_id = 14887;
 
+-------------------------------------------------------------------------------------
+
 -- 4. Busqué al segundo testigo mencionado en el reporte del crimen.
 -- La descripción indicaba que su nombre era Annabel y que vivía en Franklin Ave.
 -- Para encontrarla, filtré la tabla person por el nombre y la calle.
@@ -34,11 +42,15 @@ SELECT * FROM person
 WHERE address_street_name = 'Franklin Ave'
 AND name LIKE '%Annabel%';
 
+-------------------------------------------------------------------------------------
+
 -- 5. Revisé la entrevista del segundo testigo (Annabel Miller)
 -- para verificar si había proporcionado información relevante sobre el crimen.
 
 SELECT * FROM interview
 WHERE person_id = 16371;
+
+-------------------------------------------------------------------------------------
 
 -- 6. A partir de las declaraciones de los testigos, investigué a los miembros
 -- del gimnasio "Get Fit Now". El primer testigo mencionó que el sospechoso
@@ -49,12 +61,16 @@ SELECT * FROM get_fit_now_member
 WHERE id LIKE '%48Z%'
 AND membership_status = 'gold';
 
+-------------------------------------------------------------------------------------
+
 -- 7. Luego de identificar a los dos posibles sospechosos del gimnasio,
 -- busqué sus registros en la tabla person para obtener sus números de licencia.
 -- Esta información es necesaria para revisar los vehículos asociados a cada uno.
 
 SELECT * FROM person
 WHERE id = 28819 OR id = 67318;
+
+-------------------------------------------------------------------------------------
 
 -- 8. Para identificar cuál de los dos sospechosos coincidía con la pista
 -- de la placa del vehículo ("H42W"), consulté la tabla drivers_license
@@ -63,6 +79,8 @@ WHERE id = 28819 OR id = 67318;
 SELECT * FROM drivers_license
 WHERE id = 173289 OR id = 423327;
 
+-------------------------------------------------------------------------------------
+
 -- 9. Finalmente, con toda la información recopilada, 
 -- llegué a la conclusión de que el sospechoso era Jeremy Bowers, 
 -- quien tenía el número de membresía "48Z123" y la placa del vehículo "0H42W2" coincidía con la descripción dada por los testigos.
@@ -70,11 +88,15 @@ WHERE id = 173289 OR id = 423327;
 INSERT INTO solution VALUES (1, 'Jeremy Bowers');
     SELECT value FROM solution;
 
+-------------------------------------------------------------------------------------
+
 -- 10. Después de identificar a Jeremy Bowers como el asesino,
 -- revisé su entrevista para averiguar si alguien más estuvo involucrado en la planificación del crimen.
 
 SELECT * FROM interview
 WHERE person_id = 67318;
+
+-------------------------------------------------------------------------------------
 
 -- 11. A partir de la entrevista de Jeremy Bowers, busqué en la tabla drivers_license
 -- a mujeres con cabello rojo, altura entre 65 y 67 pulgadas 
@@ -86,12 +108,16 @@ AND hair_color = 'red'
 AND height BETWEEN 65 AND 67
 AND car_make = 'Tesla';
 
+-------------------------------------------------------------------------------------
+
 -- 12. Después de identificar tres posibles coincidencias en la tabla drivers_license,
 -- consulté la tabla person para obtener los nombres de las sospechosas
 -- usando sus license_id.
 
 SELECT * FROM person
 WHERE license_id IN (202298, 291182, 918773);
+
+-------------------------------------------------------------------------------------
 
 -- 13. Para identificar a la persona que contrató al asesino,
 -- revisé los registros del evento "SQL Symphony Concert"
@@ -102,8 +128,12 @@ WHERE person_id IN (78881, 90700, 99716)
 AND event_name = 'SQL Symphony Concert'
 AND date BETWEEN 20171201 AND 20171231;
 
+-------------------------------------------------------------------------------------
+
 -- 14. Finalmente, con toda la información recopilada,
 -- llegué a la conclusión de que la persona que contrató a Jeremy Bowers para cometer el asesinato fue Miranda Priestly, quien asistió 3 veces al concierto de SQL Symphony en diciembre de 2017.
 
 INSERT INTO solution VALUES (1, 'Miranda Priestly');
     SELECT value FROM solution;
+
+-------------------------------------------------------------------------------------
