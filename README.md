@@ -4,8 +4,11 @@ Este proyecto corresponde a la resolución del ejercicio interactivo **SQL Murde
 
 A través de diferentes pistas, entrevistas y registros almacenados en varias tablas, se realiza un proceso de investigación para identificar al **asesino** y posteriormente a la **persona que organizó el crimen**.
 
-🔎 Reto:  
+<h3>🔎 Reto SQL Murder Mystery</h3>
+
+<a href="https://mystery.knightlab.com/" target="_blank">
 https://mystery.knightlab.com/
+</a>
 
 ---
 
