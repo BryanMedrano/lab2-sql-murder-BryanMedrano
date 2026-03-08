@@ -138,3 +138,93 @@ Esta información reforzó la pista obtenida en la declaración del primer testi
 
 Con ambas declaraciones apuntando al mismo lugar, decidí enfocar la investigación en los miembros del gimnasio Get Fit Now para intentar identificar al sospechoso.
 ___
+
+### **6. Búsqueda de sospechosos en el gimnasio**
+
+A partir de las declaraciones de los testigos, ambas pistas apuntaban al gimnasio **Get Fit Now**.  
+El primer testigo mencionó que el sospechoso llevaba una bolsa de este gimnasio y que el número de membresía comenzaba con **"48Z"**, además de que solo los miembros **Gold** poseen ese tipo de bolsa.
+
+Con esta información decidí buscar en la tabla `get_fit_now_member` a los miembros que cumplieran estas características.
+
+```sql
+SELECT * FROM get_fit_now_member
+WHERE id LIKE '%48Z%'
+AND membership_status = 'gold';
+```
+
+**Evidencia**
+
+![alt text](evidencia/paso6_sospechosos_gimnasio.png)
+
+> **Conclusión:**\
+La consulta redujo la lista de posibles sospechosos a dos personas:\
+***Joe Germuska***\
+***Jeremy Bowers***\
+Ambos son miembros Gold del gimnasio y sus números de membresía coinciden con el patrón mencionado por el primer testigo.
+
+El siguiente paso de la investigación fue determinar cuál de estos dos sospechosos coincidía con la pista del vehículo cuya placa contenía "H42W".
+
+Pero primero necesitamos encontrar **las licencias de estas dos personas**.
+___
+
+### **7. Obtención de licencias de los sospechosos**
+
+Después de reducir la lista de posibles sospechosos a ***Joe Germuska*** y ***Jeremy Bowers***, el siguiente paso fue obtener sus números de licencia de conducir para poder revisar los vehículos asociados a cada uno.
+
+Para ello ejecuté la siguiente consulta en la tabla `person`:
+
+```sql
+SELECT * FROM person
+WHERE id = 28819 OR id = 67318;
+```
+
+**Evidencia**
+
+![alt text](evidencia/paso7_licencias_sospechosos.png)
+
+> **Conclusión:**\
+La consulta permitió obtener los números de licencia de ambos sospechosos:\
+***Joe Germuska***: license_id = 173289\
+***Jeremy Bowers***: license_id = 423327
+
+Con esta información, el siguiente paso fue revisar la tabla drivers_license para identificar cuál de los dos tenía un vehículo cuya placa coincidiera con la pista "H42W" mencionada por el primer testigo.
+___
+
+### **8. Verificación de las placas de los sospechosos**
+
+Luego de obtener los números de licencia de ***Joe Germuska*** y ***Jeremy Bowers***, el siguiente paso fue revisar la tabla `drivers_license` para verificar qué vehículo estaba asociado a cada uno.
+
+```sql
+SELECT * FROM drivers_license
+WHERE id = 173289 OR id = 423327;
+```
+
+**Evidencia**
+
+![alt text](evidencia/paso8_verificacion_placa.png)
+
+> **Conclusión:**\
+Al revisar los resultados, observé que el vehículo asociado a ***Jeremy Bowers*** tenía la placa: 0H42W2\
+Esta placa contiene la secuencia "H42W", que coincide con la pista proporcionada por el primer testigo.
+
+Con esta evidencia, se pudo identificar a Jeremy Bowers como el principal sospechoso del asesinato.
+
+___
+
+### 9. Verificación del culpable
+
+Después de analizar todas las pistas recolectadas durante la investigación, concluí que ***Jeremy Bowers*** era el responsable del asesinato. Para confirmar esta hipótesis, utilicé la consulta de verificación proporcionada por la plataforma.
+
+```sql
+INSERT INTO solution VALUES (1, 'Jeremy Bowers');
+    SELECT value FROM solution;
+```
+
+**Evidencia**
+
+![alt text](evidencia/paso9_verificacion_asesino.png)
+
+> **Conclusión:**\
+Esto confirmó que Jeremy Bowers era el asesino, pero también reveló que podría existir un autor intelectual detrás del crimen.
+
+Por esta razón, el siguiente paso de la investigación consistió en revisar la entrevista de Jeremy Bowers para descubrir quién pudo haberlo contratado para cometer el asesinato.

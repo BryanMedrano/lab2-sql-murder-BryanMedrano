@@ -39,3 +39,34 @@ AND name LIKE '%Annabel%';
 
 SELECT * FROM interview
 WHERE person_id = 16371;
+
+-- 6. A partir de las declaraciones de los testigos, investigué a los miembros
+-- del gimnasio "Get Fit Now". El primer testigo mencionó que el sospechoso
+-- llevaba una bolsa del gimnasio y que su número de membresía comenzaba con "48Z".
+-- También indicó que solo los miembros Gold tienen ese tipo de bolsa.
+
+SELECT * FROM get_fit_now_member
+WHERE id LIKE '%48Z%'
+AND membership_status = 'gold';
+
+-- 7. Luego de identificar a los dos posibles sospechosos del gimnasio,
+-- busqué sus registros en la tabla person para obtener sus números de licencia.
+-- Esta información es necesaria para revisar los vehículos asociados a cada uno.
+
+SELECT * FROM person
+WHERE id = 28819 OR id = 67318;
+
+-- 8. Para identificar cuál de los dos sospechosos coincidía con la pista
+-- de la placa del vehículo ("H42W"), consulté la tabla drivers_license
+-- usando los license_id obtenidos previamente.
+
+SELECT * FROM drivers_license
+WHERE id = 173289 OR id = 423327;
+
+-- 9. Finalmente, con toda la información recopilada, 
+-- llegué a la conclusión de que el sospechoso era Jeremy Bowers, 
+-- quien tenía el número de membresía "48Z123" y la placa del vehículo "0H42W2" coincidía con la descripción dada por los testigos.
+
+INSERT INTO solution VALUES (1, 'Jeremy Bowers');
+        
+        SELECT value FROM solution;
