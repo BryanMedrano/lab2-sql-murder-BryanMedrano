@@ -131,7 +131,8 @@ AND date BETWEEN 20171201 AND 20171231;
 -------------------------------------------------------------------------------------
 
 -- 14. Finalmente, con toda la información recopilada,
--- llegué a la conclusión de que la persona que contrató a Jeremy Bowers para cometer el asesinato fue Miranda Priestly, quien asistió 3 veces al concierto de SQL Symphony en diciembre de 2017.
+-- llegué a la conclusión de que la persona que contrató a Jeremy Bowers para cometer el asesinato fue Miranda Priestly, 
+-- quien asistió 3 veces al concierto de SQL Symphony en diciembre de 2017.
 
 INSERT INTO solution VALUES (1, 'Miranda Priestly');
     SELECT value FROM solution;
