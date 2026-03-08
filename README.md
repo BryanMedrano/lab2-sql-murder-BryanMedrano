@@ -175,10 +175,7 @@ WHERE person_id = 16371;
 ![alt text](evidencia/paso5_entrevista_annabel.png)
 
 > **Conclusión:**\
-La consulta permitió identificar a la segunda testigo:\
-**Nombre:** Annabel Miller  
-**Dirección:** 103 Franklin Ave  
-En su declaración, Annabel afirmó haber presenciado el asesinato y mencionó que reconoció al asesino del gimnasio al que asiste. También indicó que lo había visto entrenando allí la semana anterior, específicamente el 9 de enero.
+>En su declaración, Annabel afirmó haber presenciado el asesinato y mencionó que reconoció al asesino del gimnasio al que asiste. También indicó que lo había visto entrenando allí la semana anterior, específicamente el 9 de enero.
 
 Esta información reforzó la pista obtenida en la declaración del primer testigo, quien mencionó que el sospechoso llevaba una bolsa del gimnasio Get Fit Now Gym.
 
